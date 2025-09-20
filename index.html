@@ -1,93 +1,649 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mridul Krishna Sharma | Portfolio</title>
-
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- AOS Animation -->
-  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
-
-  <style>
-    /* Typewriter Effect */
-    .typewriter {
-      display: inline-block;
-      overflow: hidden;
-      border-right: 2px solid #6366f1;
-      white-space: nowrap;
-      animation: typing 4s steps(30, end), blink-caret 0.75s step-end infinite;
-    }
-
-    @keyframes typing {
-      from { width: 0 }
-      to { width: 28ch } /* Full name + "Hi, I'm" */
-    }
-
-    @keyframes blink-caret {
-      from, to { border-color: transparent }
-      50% { border-color: #6366f1; }
-    }
-
-    /* Responsive adjustments */
-    @media (max-width: 640px) {
-      .typewriter {
-        font-size: 1.75rem;
-        white-space: normal; /* allow wrapping if very small */
-        border-right: none; /* remove caret on wrap */
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mridul Krishna Sharma | Portfolio</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --dark: #0f172a;
+            --light: #f8fafc;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s ease;
+        }
+        .font-heading {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .dark {
+            background-color: var(--dark);
+            color: var(--light);
+        }
+        .light {
+            background-color: var(--light);
+            color: var(--dark);
+        }
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        .progress-bar {
+            transition: width 1.5s ease-in-out;
+        }
+        
+        /* Cursor styles */
+        .cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: rgba(99, 102, 241, 0.5);
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+            mix-blend-mode: difference;
+        }
+        
+        .cursor-hover {
+            transform: translate(-50%, -50%) scale(1.5);
+            background-color: rgba(99, 102, 241, 0.8);
+        }
+        
+        /* Typewriter effect */
+        .typewriter {
+            overflow: hidden;
+            border-right: 2px solid var(--primary);
+            white-space: nowrap;
+            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--primary) }
+        }
+    </style>
 </head>
-<body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+<body class="dark">
+    <!-- Header -->
+    <header class="fixed w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md shadow-sm">
+    <div class="container mx-auto px-8 sm:px-12 py-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <a href="#" class="font-heading text-2xl font-bold text-indigo-600 dark:text-indigo-400 mb-2 md:mb-0">Mridul.</a>
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#home" class="nav-link text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400">Home</a>
+                    <a href="#about" class="nav-link text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400">About</a>
+                    <a href="#skills" class="nav-link text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400">Skills</a>
+                    <a href="#experience" class="nav-link text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400">Experience</a>
+                    <a href="#projects" class="nav-link text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400">Projects</a>
+                    <a href="#contact" class="nav-link text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400">Contact</a>
+                </nav>
+                <button id="mobile-menu-button" class="md:hidden p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors mt-2 md:mt-0">
+                    <i data-feather="menu"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-slate-900 shadow-lg">
+            <div class="container mx-auto px-8 sm:px-12 py-4 flex flex-col space-y-4 text-center">
+                <a href="#home" class="nav-link text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400">Home</a>
+                <a href="#about" class="nav-link text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400">About</a>
+                <a href="#skills" class="nav-link text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400">Skills</a>
+                <a href="#experience" class="nav-link text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400">Experience</a>
+                <a href="#projects" class="nav-link text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400">Projects</a>
+                <a href="#contact" class="nav-link text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400">Contact</a>
+            </div>
+        </div>
+    </header>
 
-  <!-- Hero Section -->
-  <section class="flex flex-col items-center justify-center min-h-screen px-6 text-center md:text-left md:flex-row md:justify-between">
-    <div data-aos="fade-right">
-      <h1 class="font-heading text-3xl sm:text-4xl md:text-6xl font-bold mb-6 typewriter leading-tight">
-        Hi, I'm <span class="text-indigo-600 dark:text-indigo-400">Mridul Krishna Sharma</span>
-      </h1>
-      <p class="text-lg sm:text-xl md:text-2xl text-gray-600 dark:text-gray-300">
-        A Passionate Developer & Innovator 🚀
-      </p>
-    </div>
-    <div data-aos="fade-left" class="mt-10 md:mt-0">
-      <img src="https://via.placeholder.com/300x300" alt="Profile" class="rounded-full shadow-lg" />
-    </div>
-  </section>
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center pt-20">
+    <div class="container mx-auto px-8 sm:px-12 py-20">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="md:w-1/2 mb-12 md:mb-0" data-aos="fade-right">
+                    <h1 class="font-heading text-4xl md:text-6xl font-bold mb-6 text-slate-800 dark:text-white typewriter">Hi, I'm <span class="text-indigo-600 dark:text-indigo-400">Mridul Krishna Sharma</span></h1>
+                    <h2 class="text-2xl md:text-3xl font-semibold mb-6 text-slate-600 dark:text-slate-300">Computer Science Engineer | Flutter & Fullstack Developer</h2>
+                    <p class="text-lg mb-8 text-slate-500 dark:text-slate-400">"Curious learner, problem solver, and builder of smart apps."</p>
+                    <div class="flex space-x-4">
+                        <a href="#projects" class="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-medium transition-colors">View Projects</a>
+                        <a href="#contact" class="px-6 py-3 border border-indigo-600 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-slate-800 rounded-lg font-medium transition-colors">Contact Me</a>
+                    </div>
+                </div>
+                <div class="md:w-1/2" data-aos="fade-left">
+                    <div class="relative">
+                        <div class="w-64 h-64 md:w-80 md:h-80 bg-indigo-100 dark:bg-slate-800 rounded-full mx-auto flex items-center justify-center">
+                            <i data-feather="user" class="text-indigo-600 dark:text-indigo-400 w-32 h-32"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <!-- About Section -->
-  <section id="about" class="px-6 py-20 bg-white dark:bg-gray-800" data-aos="fade-up">
-    <h2 class="text-3xl font-bold text-indigo-600 mb-6">About Me</h2>
-    <p class="text-lg max-w-2xl">
-      I’m a Computer Science student with a passion for AI, Flutter, and backend development.
-      I love building apps that solve real-world problems.
-    </p>
-  </section>
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-slate-50 dark:bg-slate-900/50">
+    <div class="container mx-auto px-8 sm:px-12">
+            <h2 class="font-heading text-3xl md:text-4xl font-bold mb-12 text-center text-slate-800 dark:text-white" data-aos="fade-up">About Me</h2>
+            <div class="flex flex-col md:flex-row items-center" data-aos="fade-up">
+                <div class="md:w-1/2 mb-8 md:mb-0">
+                    <p class="text-lg mb-6 text-slate-600 dark:text-slate-300">
+                        I'm a passionate computer science student with a strong foundation in software development and problem-solving. 
+                        My journey in technology began with curiosity and has evolved into building practical solutions that make an impact.
+                    </p>
+                    <p class="text-lg mb-6 text-slate-600 dark:text-slate-300">
+                        When I'm not coding, you can find me contributing to open-source projects, participating in hackathons, or exploring new technologies.
+                    </p>
+                </div>
+                <div class="md:w-1/2 md:pl-12">
+                    <div class="bg-white dark:bg-slate-800 p-8 rounded-xl shadow-lg">
+                        <h3 class="font-heading text-xl font-bold mb-4 text-slate-800 dark:text-white">Education</h3>
+                        <div class="space-y-6">
+                            <div>
+                                <h4 class="font-medium text-lg text-slate-700 dark:text-slate-300">B.Tech in Computer Science</h4>
+                                <p class="text-slate-500 dark:text-slate-400">Birla Institute of Technology, Mesra (2023-2027)</p>
+                                <p class="text-slate-500 dark:text-slate-400">CGPA: 8.50</p>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-lg text-slate-700 dark:text-slate-300">Green Valley School, Bhilwara</h4>
+                                <p class="text-slate-500 dark:text-slate-400">10th: 90.4% | 12th: 85%</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <!-- Contact Section -->
-  <section id="contact" class="px-6 py-20 bg-gray-100 dark:bg-gray-900" data-aos="fade-up">
-    <h2 class="text-3xl font-bold text-indigo-600 mb-6">Contact Me</h2>
-    <form class="max-w-md mx-auto space-y-4">
-      <input type="text" placeholder="Your Name" class="w-full p-3 rounded-lg border" />
-      <input type="email" placeholder="Your Email" class="w-full p-3 rounded-lg border" />
-      <textarea placeholder="Your Message" class="w-full p-3 rounded-lg border"></textarea>
-      <button type="submit" class="bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition">
-        Send
-      </button>
-    </form>
-  </section>
+    <!-- Skills Section -->
+    <section id="skills" class="py-20">
+    <div class="container mx-auto px-8 sm:px-12">
+            <h2 class="font-heading text-3xl md:text-4xl font-bold mb-12 text-center text-slate-800 dark:text-white" data-aos="fade-up">My Skills</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Languages -->
+                <div class="skill-card bg-white dark:bg-slate-800 p-6 rounded-xl shadow-md transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex items-center mb-4">
+                        <div class="p-3 rounded-lg bg-indigo-100 dark:bg-slate-700 mr-4">
+                            <i data-feather="code" class="text-indigo-600 dark:text-indigo-400"></i>
+                        </div>
+                        <h3 class="font-heading text-xl font-bold text-slate-800 dark:text-white">Languages</h3>
+                    </div>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm font-medium text-slate-700 dark:text-slate-300">Golang</span>
+                                <span class="text-sm text-slate-500 dark:text-slate-400">85%</span>
+                            </div>
+                            <div class="text-sm text-slate-500 dark:text-slate-400">Advanced</div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm font-medium text-slate-700 dark:text-slate-300">Dart</span>
+                                <span class="text-sm text-slate-500 dark:text-slate-400">90%</span>
+                            </div>
+                            <div class="text-sm text-slate-500 dark:text-slate-400">Expert</div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm font-medium text-slate-700 dark:text-slate-300">C</span>
+                                <span class="text-sm text-slate-500 dark:text-slate-400">80%</span>
+                            </div>
+                            <div class="text-sm text-slate-500 dark:text-slate-400">Proficient</div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm font-medium text-slate-700 dark:text-slate-300">Java</span>
+                                <span class="text-sm text-slate-500 dark:text-slate-400">75%</span>
+                            </div>
+                            <div class="text-sm text-slate-500 dark:text-slate-400">Intermediate</div>
+                        </div>
+                    </div>
+                </div>
 
-  <!-- AOS JS -->
-  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-  <script>
-    AOS.init({
-      once: false, // animations repeat
-      duration: 1000,
-      easing: "ease-in-out"
-    });
-  </script>
+                <!-- Tools -->
+                <div class="skill-card bg-white dark:bg-slate-800 p-6 rounded-xl shadow-md transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex items-center mb-4">
+                        <div class="p-3 rounded-lg bg-indigo-100 dark:bg-slate-700 mr-4">
+                            <i data-feather="tool" class="text-indigo-600 dark:text-indigo-400"></i>
+                        </div>
+                        <h3 class="font-heading text-xl font-bold text-slate-800 dark:text-white">Tools</h3>
+                    </div>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm font-medium text-slate-700 dark:text-slate-300">GitHub</span>
+                                <span class="text-sm text-slate-500 dark:text-slate-400">90%</span>
+                            </div>
+                            <div class="text-sm text-slate-500 dark:text-slate-400">Expert</div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm font-medium text-slate-700 dark:text-slate-300">MySQL</span>
+                                <span class="text-sm text-slate-500 dark:text-slate-400">85%</span>
+                            </div>
+                            <div class="text-sm text-slate-500 dark:text-slate-400">Advanced</div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm font-medium text-slate-700 dark:text-slate-300">Tkinter</span>
+                                <span class="text-sm text-slate-500 dark:text-slate-400">80%</span>
+                            </div>
+                            <div class="text-sm text-slate-500 dark:text-slate-400">Proficient</div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm font-medium text-slate-700 dark:text-slate-300">Android Studio</span>
+                                <span class="text-sm text-slate-500 dark:text-slate-400">85%</span>
+                            </div>
+                            <div class="text-sm text-slate-500 dark:text-slate-400">Advanced</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Technical & Soft Skills -->
+                <div class="skill-card bg-white dark:bg-slate-800 p-6 rounded-xl shadow-md transition-all duration-300" data-aos="fade-up" data-aos-delay="300">
+                    <div class="flex items-center mb-4">
+                        <div class="p-3 rounded-lg bg-indigo-100 dark:bg-slate-700 mr-4">
+                            <i data-feather="award" class="text-indigo-600 dark:text-indigo-400"></i>
+                        </div>
+                        <h3 class="font-heading text-xl font-bold text-slate-800 dark:text-white">Other Skills</h3>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="flex items-center">
+                            <i data-feather="check" class="text-indigo-600 dark:text-indigo-400 mr-2"></i>
+                            <span class="text-sm text-slate-700 dark:text-slate-300">Data Structures</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i data-feather="check" class="text-indigo-600 dark:text-indigo-400 mr-2"></i>
+                            <span class="text-sm text-slate-700 dark:text-slate-300">Algorithms</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i data-feather="check" class="text-indigo-600 dark:text-indigo-400 mr-2"></i>
+                            <span class="text-sm text-slate-700 dark:text-slate-300">Teamwork</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i data-feather="check" class="text-indigo-600 dark:text-indigo-400 mr-2"></i>
+                            <span class="text-sm text-slate-700 dark:text-slate-300">Problem Solving</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i data-feather="check" class="text-indigo-600 dark:text-indigo-400 mr-2"></i>
+                            <span class="text-sm text-slate-700 dark:text-slate-300">Resilience</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i data-feather="check" class="text-indigo-600 dark:text-indigo-400 mr-2"></i>
+                            <span class="text-sm text-slate-700 dark:text-slate-300">Creativity</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i data-feather="check" class="text-indigo-600 dark:text-indigo-400 mr-2"></i>
+                            <span class="text-sm text-slate-700 dark:text-slate-300">Time Management</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i data-feather="check" class="text-indigo-600 dark:text-indigo-400 mr-2"></i>
+                            <span class="text-sm text-slate-700 dark:text-slate-300">Curiosity</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-20 bg-slate-50 dark:bg-slate-900/50">
+    <div class="container mx-auto px-8 sm:px-12">
+            <h2 class="font-heading text-3xl md:text-4xl font-bold mb-12 text-center text-slate-800 dark:text-white" data-aos="fade-up">Experience</h2>
+            <div class="max-w-3xl mx-auto" data-aos="fade-up">
+                <div class="bg-white dark:bg-slate-800 p-8 rounded-xl shadow-lg">
+                    <div class="flex items-start">
+                        <div class="p-3 rounded-lg bg-indigo-100 dark:bg-slate-700 mr-6">
+                            <i data-feather="briefcase" class="text-indigo-600 dark:text-indigo-400"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-heading text-xl font-bold text-slate-800 dark:text-white mb-1">Flutter App Development Intern</h3>
+                            <p class="text-indigo-600 dark:text-indigo-400 font-medium mb-2">Ready Bytes Software Pvt. Ltd. (June–July 2025)</p>
+                            <p class="text-slate-600 dark:text-slate-300 mb-4">
+                                Developed Everbloom, a gratitude garden app with AI-based growth logic, image upload functionality, and intuitive gestures.
+                            </p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-indigo-100 dark:bg-slate-700 text-indigo-800 dark:text-indigo-300 text-xs font-medium rounded-full">Flutter</span>
+                                <span class="px-3 py-1 bg-indigo-100 dark:bg-slate-700 text-indigo-800 dark:text-indigo-300 text-xs font-medium rounded-full">Dart</span>
+                                <span class="px-3 py-1 bg-indigo-100 dark:bg-slate-700 text-indigo-800 dark:text-indigo-300 text-xs font-medium rounded-full">AI Integration</span>
+                                <span class="px-3 py-1 bg-indigo-100 dark:bg-slate-700 text-indigo-800 dark:text-indigo-300 text-xs font-medium rounded-full">Mobile Development</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20">
+    <div class="container mx-auto px-8 sm:px-12">
+            <h2 class="font-heading text-3xl md:text-4xl font-bold mb-12 text-center text-slate-800 dark:text-white" data-aos="fade-up">Projects</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Project 1 -->
+                <div class="project-card bg-white dark:bg-slate-800 p-6 rounded-xl shadow-md transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+                    <div class="h-48 bg-slate-200 dark:bg-slate-700 rounded-lg mb-4 flex items-center justify-center">
+                        <i data-feather="smartphone" class="text-indigo-600 dark:text-indigo-400 w-24 h-24"></i>
+                    </div>
+                    <h3 class="font-heading text-xl font-bold text-slate-800 dark:text-white mb-2">Reddit-like Android App</h3>
+                    <p class="text-slate-600 dark:text-slate-300 mb-4">
+                        A social media application inspired by Reddit, built with Dart and Android Studio, featuring Firebase for real-time data synchronization.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-indigo-100 dark:bg-slate-700 text-indigo-800 dark:text-indigo-300 text-xs font-medium rounded-full">Dart</span>
+                        <span class="px-3 py-1 bg-indigo-100 dark:bg-slate-700 text-indigo-800 dark:text-indigo-300 text-xs font-medium rounded-full">Android Studio</span>
+                        <span class="px-3 py-1 bg-indigo-100 dark:bg-slate-700 text-indigo-800 dark:text-indigo-300 text-xs font-medium rounded-full">Firebase</span>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card bg-white dark:bg-slate-800 p-6 rounded-xl shadow-md transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+                    <div class="h-48 bg-slate-200 dark:bg-slate-700 rounded-lg mb-4 flex items-center justify-center">
+                        <i data-feather="shield" class="text-indigo-600 dark:text-indigo-400 w-24 h-24"></i>
+                    </div>
+                    <h3 class="font-heading text-xl font-bold text-slate-800 dark:text-white mb-2">SheShield</h3>
+                    <p class="text-slate-600 dark:text-slate-300 mb-4">
+                        Women's safety app featuring SOS functionality, geofencing, live image capture, and Twilio integration for emergency alerts.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-indigo-100 dark:bg-slate-700 text-indigo-800 dark:text-indigo-300 text-xs font-medium rounded-full">Python</span>
+                        <span class="px-3 py-1 bg-indigo-100 dark:bg-slate-700 text-indigo-800 dark:text-indigo-300 text-xs font-medium rounded-full">Tkinter</span>
+                        <span class="px-3 py-1 bg-indigo-100 dark:bg-slate-700 text-indigo-800 dark:text-indigo-300 text-xs font-medium rounded-full">Twilio</span>
+                        <span class="px-3 py-1 bg-indigo-100 dark:bg-slate-700 text-indigo-800 dark:text-indigo-300 text-xs font-medium rounded-full">Geolocation</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section id="achievements" class="py-20 bg-slate-50 dark:bg-slate-900/50">
+    <div class="container mx-auto px-8 sm:px-12">
+            <h2 class="font-heading text-3xl md:text-4xl font-bold mb-12 text-center text-slate-800 dark:text-white" data-aos="fade-up">Achievements</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-md" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex items-center mb-4">
+                        <div class="p-3 rounded-lg bg-indigo-100 dark:bg-slate-700 mr-4">
+                            <i data-feather="award" class="text-indigo-600 dark:text-indigo-400"></i>
+                        </div>
+                        <h3 class="font-heading text-xl font-bold text-slate-800 dark:text-white">Top 10 in SIH</h3>
+                    </div>
+                    <p class="text-slate-600 dark:text-slate-300">Secured top 10 position in Smart India Hackathon internal round.</p>
+                </div>
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-md" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex items-center mb-4">
+                        <div class="p-3 rounded-lg bg-indigo-100 dark:bg-slate-700 mr-4">
+                            <i data-feather="users" class="text-indigo-600 dark:text-indigo-400"></i>
+                        </div>
+                        <h3 class="font-heading text-xl font-bold text-slate-800 dark:text-white">Best Team of 2023</h3>
+                    </div>
+                    <p class="text-slate-600 dark:text-slate-300">Recognized as the best team in National Service Scheme (NSS) activities.</p>
+                </div>
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-md" data-aos="fade-up" data-aos-delay="300">
+                    <div class="flex items-center mb-4">
+                        <div class="p-3 rounded-lg bg-indigo-100 dark:bg-slate-700 mr-4">
+                            <i data-feather="code" class="text-indigo-600 dark:text-indigo-400"></i>
+                        </div>
+                        <h3 class="font-heading text-xl font-bold text-slate-800 dark:text-white">LeetCode Contest</h3>
+                    </div>
+                    <p class="text-slate-600 dark:text-slate-300">Ranked 1755 out of 28,660 participants in LeetCode Weekly Contest 434.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Extracurricular Section -->
+    <section id="extracurricular" class="py-20">
+    <div class="container mx-auto px-8 sm:px-12">
+            <h2 class="font-heading text-3xl md:text-4xl font-bold mb-12 text-center text-slate-800 dark:text-white" data-aos="fade-up">Extracurricular</h2>
+            <div class="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-md" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex items-center mb-4">
+                        <div class="p-3 rounded-lg bg-indigo-100 dark:bg-slate-700 mr-4">
+                            <i data-feather="heart" class="text-indigo-600 dark:text-indigo-400"></i>
+                        </div>
+                        <h3 class="font-heading text-xl font-bold text-slate-800 dark:text-white">NSS Volunteer</h3>
+                    </div>
+                    <p class="text-slate-600 dark:text-slate-300">
+                        Active participant in community service activities, organizing events, and contributing to social causes.
+                    </p>
+                </div>
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-md" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex items-center mb-4">
+                        <div class="p-3 rounded-lg bg-indigo-100 dark:bg-slate-700 mr-4">
+                            <i data-feather="git-merge" class="text-indigo-600 dark:text-indigo-400"></i>
+                        </div>
+                        <h3 class="font-heading text-xl font-bold text-slate-800 dark:text-white">Team Projects</h3>
+                    </div>
+                    <p class="text-slate-600 dark:text-slate-300">
+                        Collaborated on various team-based projects beyond coursework, enhancing teamwork and problem-solving skills.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-slate-50 dark:bg-slate-900/50">
+    <div class="container mx-auto px-8 sm:px-12">
+            <h2 class="font-heading text-3xl md:text-4xl font-bold mb-12 text-center text-slate-800 dark:text-white" data-aos="fade-up">Get In Touch</h2>
+            <div class="flex flex-col md:flex-row">
+                <div class="md:w-1/2 mb-12 md:mb-0 md:pr-12" data-aos="fade-right">
+                    <h3 class="font-heading text-2xl font-bold mb-6 text-slate-800 dark:text-white">Contact Information</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="p-3 rounded-lg bg-indigo-100 dark:bg-slate-700 mr-4">
+                                <i data-feather="mail" class="text-indigo-600 dark:text-indigo-400"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-lg text-slate-700 dark:text-slate-300">Email</h4>
+                                <a href="mailto:mksop321@gmail.com" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">mksop321@gmail.com</a>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="p-3 rounded-lg bg-indigo-100 dark:bg-slate-700 mr-4">
+                                <i data-feather="phone" class="text-indigo-600 dark:text-indigo-400"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-lg text-slate-700 dark:text-slate-300">Phone</h4>
+                                <a href="tel:+916378962891" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">+91 6378962891</a>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="p-3 rounded-lg bg-indigo-100 dark:bg-slate-700 mr-4">
+                                <i data-feather="linkedin" class="text-indigo-600 dark:text-indigo-400"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-lg text-slate-700 dark:text-slate-300">LinkedIn</h4>
+                                <a href="https://linkedin.com/in/mridul-krishna-sharma-913834291" target="_blank" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">linkedin.com/in/mridul-krishna-sharma</a>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="p-3 rounded-lg bg-indigo-100 dark:bg-slate-700 mr-4">
+                                <i data-feather="github" class="text-indigo-600 dark:text-indigo-400"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-lg text-slate-700 dark:text-slate-300">GitHub</h4>
+                                <a href="https://github.com/Mksthatsall" target="_blank" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">github.com/Mksthatsall</a>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="p-3 rounded-lg bg-indigo-100 dark:bg-slate-700 mr-4">
+                                <i data-feather="code" class="text-indigo-600 dark:text-indigo-400"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-lg text-slate-700 dark:text-slate-300">LeetCode</h4>
+                                <a href="https://leetcode.com/Mridul-Krishna-Sharma/" target="_blank" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">leetcode.com/Mridul-Krishna-Sharma</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-1/2" data-aos="fade-left">
+                    <form id="contact-form" class="bg-white dark:bg-slate-800 p-8 rounded-xl shadow-lg">
+                        <h3 class="font-heading text-2xl font-bold mb-6 text-slate-800 dark:text-white">Send Me a Message</h3>
+                        <div class="space-y-6">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Name</label>
+                                <input type="text" id="name" name="name" class="w-full px-4 py-3 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent" required>
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Email</label>
+                                <input type="email" id="email" name="email" class="w-full px-4 py-3 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent" required>
+                            </div>
+                            <div>
+                                <label for="message" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Message</label>
+                                <textarea id="message" name="message" rows="4" class="w-full px-4 py-3 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent" required></textarea>
+                            </div>
+                            <button type="submit" class="w-full px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-medium transition-colors">Send Message</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 bg-slate-100 dark:bg-slate-900">
+    <div class="container mx-auto px-8 sm:px-12">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <p class="text-slate-600 dark:text-slate-400 mb-4 md:mb-0">© 2023 Mridul Krishna Sharma. All rights reserved.</p>
+                <div class="flex space-x-6">
+                    <a href="https://linkedin.com/in/mridul-krishna-sharma-913834291" target="_blank" class="text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                        <i data-feather="linkedin"></i>
+                    </a>
+                    <a href="https://github.com/Mksthatsall" target="_blank" class="text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                        <i data-feather="github"></i>
+                    </a>
+                    <a href="https://leetcode.com/Mridul-Krishna-Sharma/" target="_blank" class="text-slate-600 dark:text-slate-400 hover:text-orange-500 dark:hover:text-orange-400 transition-colors">
+                        <i data-feather="code"></i>
+                    </a>
+                    <a href="mailto:mksop321@gmail.com" class="text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                        <i data-feather="mail"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            feather.replace();
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Contact Form Submission
+        const contactForm = document.getElementById('contact-form');
+        
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const button = contactForm.querySelector('button');
+            const originalText = button.textContent;
+            
+            // Simulate form submission
+            button.disabled = true;
+            button.innerHTML = '<i data-feather="loader" class="animate-spin"></i> Sending...';
+            feather.replace();
+            
+            setTimeout(() => {
+                // Show success message
+                button.innerHTML = '<i data-feather="check"></i> Message Sent!';
+                feather.replace();
+                
+                // Reset form after 2 seconds
+                setTimeout(() => {
+                    contactForm.reset();
+                    button.disabled = false;
+                    button.textContent = originalText;
+                }, 2000);
+            }, 1500);
+        });
+
+        // Interactive cursor effect
+        const cursor = document.createElement('div');
+        cursor.classList.add('cursor');
+        document.body.appendChild(cursor);
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        // Add hover effects to interactive elements
+        document.querySelectorAll('a, button, .skill-card, .project-card').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.classList.add('cursor-hover');
+            });
+            el.addEventListener('mouseleave', () => {
+                cursor.classList.remove('cursor-hover');
+            });
+        });
+
+        // Replace feather icons
+        feather.replace();
+    </script>
 </body>
 </html>
